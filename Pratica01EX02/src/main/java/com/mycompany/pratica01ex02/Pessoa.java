@@ -9,29 +9,43 @@ package com.mycompany.pratica01ex02;
  * @author Usuario
  */
 public class Pessoa {
+    
+    private String nome;
+    private String sobrenome;
+    private int idade;
+    private float altura;
+    private float peso;
+    
+    public Pessoa (String nome, String sobrenome, int idade, float altura, float peso){
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.idade = idade;
+        this.altura = altura;
+        this.peso = peso;
+}
     /**
      * @return the Nome
      */
-    public String[] getNome() {
-        return Nome;
+    public String getNome() {
+        return nome;
     }
     /**
-     * @param Nome the Nome to set
+     * @param nome the Nome to set
      */
-    public void setNome(String[] Nome) {
-        this.Nome = Nome;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
     /**
      * @return the Sobrenome
      */
-    public String[] getSobrenome() {
-        return Sobrenome;
+    public String getSobrenome() {
+        return sobrenome;
     }
     /**
-     * @param Sobrenome the Sobrenome to set
+     * @param sobrenome the Sobrenome to set
      */
-    public void setSobrenome(String[] Sobrenome) {
-        this.Sobrenome = Sobrenome;
+    public void setSobrenome(String sobrenome) {
+        this.sobrenome = sobrenome;
     }
     /**
      * @return the idade
@@ -69,23 +83,22 @@ public class Pessoa {
     public void setPeso(float peso) {
         this.peso = peso;
     }
-    /**
-     * @return the imc
-     */
-    public float getImc() {
-        return imc;
+    
+    public double CalcularIMC(){
+        return peso/Math.sqrt(Math.pow(altura, 2));
     }
-    /**
-     * @param imc the imc to set
-     */
-    public void setImc(float imc) {
-        this.imc = imc;
+
+    public void InformaObesidade(){
+        double imc = CalcularIMC();
+        
+            if  (imc < 18,5){
+                System.out.println("A pessoa esta abaixo do peso");      
+            }
+            else if (imc > 25){
+            
+            }
     }
-    private String [] Nome;
-    private String [] Sobrenome;
-    private int idade;
-    private float altura;
-    private float peso;
-    private float imc;
 
 }
+
+    
