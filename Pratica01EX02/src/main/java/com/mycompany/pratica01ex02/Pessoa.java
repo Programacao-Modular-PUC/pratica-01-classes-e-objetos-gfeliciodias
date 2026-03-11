@@ -5,7 +5,7 @@
 package com.mycompany.pratica01ex02;
 
 /**
- *
+ *0
  * @author Usuario
  */
 public class Pessoa {
@@ -84,21 +84,33 @@ public class Pessoa {
         this.peso = peso;
     }
     
-    public double CalcularIMC(){
-        return peso/Math.sqrt(Math.pow(altura, 2));
+    public double calcularIMC(){
+        return peso/Math.pow(altura, 2);
     }
 
-    public void InformaObesidade(){
-        double imc = CalcularIMC();
+    public String informaObesidade(){
+        double imc = calcularIMC();
         
-            if  (imc < 18,5){
-                System.out.println("A pessoa esta abaixo do peso");      
+            if  (imc < 18.5){
+                return "A pessoa esta abaixo do peso";      
             }
-            else if (imc > 25){
-            
+            else if (imc < 25){
+                return "Peso Normal";
             }
-    }
+            else if (imc < 30){
+                return "Sobrepeso";
+            }
+            else if (imc < 35){
+                return "Obesidade grau 1"; 
+            }
+            else if (imc < 40){
+                return "Obesidade grau 2"; 
+            }
+            else{
+                return "Obesidade grau 3"; 
+            }
 
+    }
 }
 
     
