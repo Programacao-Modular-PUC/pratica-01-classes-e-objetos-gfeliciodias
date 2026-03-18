@@ -4,9 +4,10 @@
  */
 package pratica01pt02;
 
+
 /**
  *
- * @author 733633
+ * @author Usuario
  */
 public class Data {
     private int dia;
@@ -54,11 +55,5 @@ public class Data {
     public void setAno(int ano) {
         this.ano = ano;
     }
-    
-    
-    
-    
-    
-    
     
 }
