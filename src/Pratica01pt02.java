@@ -13,26 +13,38 @@ import java.util.Date;
  */
 public class Pratica01pt02 {
 public static void main(String[] args) {
+        
         Scanner sc = new Scanner (System.in);
-        Pessoa p = new Pessoa();
+        Pessoa p[] = new Pessoa[10];
         
-        System.out.println("Digite quantas pessoas voce deseja. (maximo de 10 pessoas");
+        System.out.println("Digite quantas pessoas voce deseja. (maximo de 10 pessoas)");
         int numPessoa = sc.nextInt();
-        if(numPessoa > 10){
-            System.out.println("Numero de pessoas maior que o permitido. Processo encerrando");
-            System.exit(0);
-        }
-        for(int i = 0; i <= numPessoa; i++){
+        sc.nextLine();
         
-            System.out.println("Digite o nome");
+        if(numPessoa > 10){
+            System.out.println("Numero de pessoas maior que o permitido. Processo encerrando\n");
+            return;
+        }
+        int totalCadastrados = 0;
+        
+        for(int i = 0; i < numPessoa; i++){
+            p[i] = new Pessoa ();
+        
+            System.out.println("Digite o nome");    
             p[i].setNome(sc.nextLine());
 
             System.out.println("Digite o sobrenome");
             p[i].setSobrenome(sc.nextLine());
             
-            if(p[i].nome == p[i-1].nome && p[i].nome == p[i-1].sobrenome){
-                System.out.println("Nome semelhante com o ultimo cadastrado. Sistema encerrando");
-                System.exit(0);
+            if(i>0){
+                String anterior = p[i-1].getNome()+ " " + p[i-1].getSobrenome();
+                String atual = p[i].getNome()+ " " + p[i].getSobrenome();
+                
+                if(atual.equals(anterior)){
+                    System.out.println("Nome semelhante com o ultimo cadastrado. Sistema encerrando\n");
+                    totalCadastrados = i;
+                    break;
+                }
             }
 
             System.out.println("Digite a altura");
@@ -40,6 +52,8 @@ public static void main(String[] args) {
 
             System.out.println("Digite o peso");
             p[i].setPeso(sc.nextFloat());
+            
+            sc.nextLine();
 
             System.out.println("Digite o dia do seu nascimento");
             int dia = sc.nextInt();
@@ -47,27 +61,37 @@ public static void main(String[] args) {
             System.out.println("Digite o mes do seu nascimento");
             int mes = sc.nextInt();
 
-            System.out.println("Digite o ano do seu nascimento");
+            System.out.println("Digite o ano do seu nascimento\n");
             int ano = sc.nextInt();
+            sc.nextLine();
 
-            System.out.println("Dados coletados.");
+            System.out.println("Dados coletados da " + (i+1) + " pessoa");
 
-            Calendar Cal = Calendar.getInstance();
-            Cal.set(ano, mes-1, dia);
+            Calendar cal = Calendar.getInstance();
+            cal.set(ano, mes-1, dia);
 
-            Date dataNascimento = Cal.getTime();
-            p1.setDataNascimento(dataNascimento);
-
-            System.out.println("Nome: " + p[i].getNome()+ " " + p[i].getSobrenome());
-
-            System.out.println("Idade: " + p[i].calculaIdade());
-
-            double imc = p[i].calcularIMC();
-            System.out.println("Indice de IMC " + imc);
-
-            String classificacao = p[i].informaObesidade();
-            System.out.println("Classificacao = " + classificacao);
+            Date dataNascimento = cal.getTime();
+            p[i].setDataNascimento(dataNascimento);
+            
+            totalCadastrados = i + 1;
         }
+        
+            for(int i = 0; i < totalCadastrados ; i++){
+                    System.out.println("\n<--------------------------------->");
+                    System.out.println("Cadastro: " + (i+1) + ":\n");
+                
+                    System.out.println("Nome: " + p[i].getNome()+ " " + p[i].getSobrenome());
+                    System.out.println("Nome de referencia: " + p[i].getSobrenome().toUpperCase() + ", " + p[i].getNome().toUpperCase());
+
+                    
+                    System.out.println("Idade: " + p[i].calculaIdade());
+                    
+                    double imc = p[i].calcularIMC();
+                    System.out.println("Indice de IMC " + imc);
+
+                    String classificacao = p[i].informaObesidade();
+                    System.out.println("Classificacao = " + classificacao);
+            }
        
         sc.close();
         
